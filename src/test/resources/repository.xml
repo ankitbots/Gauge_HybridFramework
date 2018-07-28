@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pages>
+    <page name="Home">
+        <uiElements>
+            <uiobject name="Home" type="xpath"><locator>//title[.='My Store']</locator></uiobject>
+            <uiobject name="SignIn" type="className"><locator>login</locator></uiobject>
+        </uiElements>
+    </page>
+    <page name="Authentication">
+        <uiElements>
+            <uiobject name="Authentication" type="xpath"><locator>//h3[contains(text(),'Create an account')]</locator></uiobject>
+            <uiobject name="NewEmailAddress" type="id"><locator>email_create</locator></uiobject>
+            <uiobject name="CreateAccount" type="id"><locator>SubmitCreate</locator></uiobject>
+            <uiobject name="RegisteredEmailAddress" type="id"><locator>email</locator></uiobject>
+            <uiobject name="Password" type="id"><locator>passwd</locator></uiobject>
+            <uiobject name="SignIn" type="id"><locator>SubmitLogin</locator></uiobject>
+        </uiElements>
+    </page>
+    <page name="CreateAnAccount">
+        <uiElements>
+            <uiobject name="CreateAnAccount" type="xpath"><locator>//h1[contains(text(),'Create an account')]</locator></uiobject>
+            <uiobject name="Mrs" type="id"><locator>id_gender2</locator></uiobject>
+            <uiobject name="FirstName" type="id"><locator>customer_firstname</locator></uiobject>
+            <uiobject name="LastName" type="id"><locator>customer_lastname</locator></uiobject>
+            <uiobject name="Password" type="id"><locator>passwd</locator></uiobject>
+            <uiobject name="Days" type="id"><locator>days</locator></uiobject>
+            <uiobject name="Months" type="id"><locator>months</locator></uiobject>
+            <uiobject name="Years" type="id"><locator>years</locator></uiobject>
+            <uiobject name="Company" type="id"><locator>company</locator></uiobject>
+            <uiobject name="Address1" type="id"><locator>address1</locator></uiobject>
+            <uiobject name="Address2" type="id"><locator>address2</locator></uiobject>
+            <uiobject name="City" type="id"><locator>city</locator></uiobject>
+            <uiobject name="State" type="id"><locator>id_state</locator></uiobject>
+            <uiobject name="Postcode" type="id"><locator>postcode</locator></uiobject>
+            <uiobject name="AdditionalInformation" type="id"><locator>other</locator></uiobject>
+            <uiobject name="HomePhone" type="id"><locator>phone</locator></uiobject>
+            <uiobject name="MobilePhone" type="id"><locator>phone_mobile</locator></uiobject>
+            <uiobject name="AddressAlias" type="id"><locator>alias</locator></uiobject>
+            <uiobject name="Register" type="id"><locator>submitAccount</locator></uiobject>
+        </uiElements>
+    </page>
+    <page name="MyAccount">
+        <uiElements>
+            <uiobject name="MyAccount" type="xpath"><locator>//title[.='My account - My Store']</locator></uiobject>
+            <uiobject name="MyAccountText" type="css"><locator>h1</locator></uiobject>
+            <uiobject name="CustomerName" type="className"><locator>account</locator></uiobject>
+            <uiobject name="WelcomeMessage" type="className"><locator>info-account</locator></uiobject>
+            <uiobject name="Logout" type="className"><locator>logout</locator></uiobject>
+            <uiobject name="WomenLink" type="linkText"><locator>Women</locator></uiobject>
+        </uiElements>
+    </page>
+    <page name="WomenStore">
+        <uiElements>
+            <uiobject name="WomenStore" type="xpath"><locator>//title[.='Women - My Store']</locator></uiobject>
+            <uiobject name="FadedShortSleeveTshirts" type="xpath"><locator>//a[@title='Faded Short Sleeve T-shirts']/ancestor::li</locator></uiobject>
+        </uiElements>
+    </page>
+    <page name="FadedShortSleeveTshirtsStore">
+        <uiElements>
+            <uiobject name="FadedShortSleeveTshirtsStore" type="xpath"><locator>//title[.='Faded Short Sleeve T-shirts - My Store']</locator></uiobject>
+            <uiobject name="AddToCart" type="name"><locator>Submit</locator></uiobject>
+            <uiobject name="ProceedToCheckout" type="xpath"><locator>//div[@id='layer_cart']//a[@class and @title='Proceed to checkout']</locator></uiobject>
+        </uiElements>
+    </page>
+    <page name="OrderStore">
+        <uiElements>
+            <uiobject name="OrderStore" type="xpath"><locator>//title[.='Order - My Store']</locator></uiobject>
+            <uiobject name="ProceedToCheckout" type="xpath"><locator>//p[contains(@class,'cart_navigation')]/a[@title='Proceed to checkout']</locator></uiobject>
+            <uiobject name="ProceedAddress" type="name"><locator>processAddress</locator></uiobject>
+            <uiobject name="AgreeTerms" type="id"><locator>uniform-cgv</locator></uiobject>
+            <uiobject name="ProceedCarrier" type="name"><locator>processCarrier</locator></uiobject>
+            <uiobject name="PayByBankWire" type="className"><locator>bankwire</locator></uiobject>
+        </uiElements>
+    </page>
+    <page name="MyStore">
+        <uiElements>
+            <uiobject name="MyStore" type="xpath"><locator>//title[.='My Store']</locator></uiobject>
+            <uiobject name="ConfirmOrder" type="xpath"><locator>//p[@id='cart_navigation']/button</locator></uiobject>
+        </uiElements>
+    </page>
+    <page name="OrderConformationStore">
+        <uiElements>
+            <uiobject name="OrderConformationStore" type="xpath"><locator>//title[.='Order confirmation - My Store']</locator></uiobject>
+            <uiobject name="OrderConformationText" type="css"><locator>h1</locator></uiobject>
+            <uiobject name="ShippingTab" type="xpath"><locator>//li[@class='step_done step_done_last four']</locator></uiobject>
+            <uiobject name="PaymentTab" type="xpath"><locator>//li[@id='step_end' and @class='step_current last']</locator></uiobject>
+            <uiobject name="OrderCompleteMessage" type="xpath"><locator>//p[@class='cheque-indent']/strong</locator></uiobject>
+        </uiElements>
+    </page>
+</pages>
