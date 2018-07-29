@@ -1,4 +1,4 @@
-drivers/**/
+*.exe
 target/
 .gauge/
 reports/
