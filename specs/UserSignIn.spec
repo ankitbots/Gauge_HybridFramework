@@ -5,16 +5,19 @@ Created by AnkitNigam on 7/27/2018
 ```````````Using external file to make seprate data from test case
 ```````````Can execute same test multiple time depending on the number of rows in csv
 
+
 table:src/test/resources/TestData/signInData.csv
 
 * User Navigate to application home
 
 Verify user able to SignIn
 ----------------
+tags: signIn
+
 * User on "Home" page
 * User click "SignIn" button
 * User on "Authentication" page
-* User enter "NewEmailAddress" as <EmailAddress>
+* User enter "NewEmailAddress" as <NewEmailAddress>
 * User click "CreateAccount" button
 * User on "CreateAnAccount" page
 * User click "Mrs" radio button
@@ -42,6 +45,7 @@ Using data from external file
 * "CustomerName" as "COMPLETE_NAME" displaying
 * "WelcomeMessage" contains "Welcome to your account."
 * "URL" contains "controller=my-account"
+* User click "Logout" button
 
 
 

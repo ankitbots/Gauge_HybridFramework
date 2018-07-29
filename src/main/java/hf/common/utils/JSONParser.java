@@ -1,43 +1,36 @@
 package hf.common.utils;
 
-import io.restassured.path.json.JsonPath;
-import org.apache.commons.lang3.StringUtils;
+import hf.common.apipojo.NewCountry;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Created by AnkitNigam on 07/27/2018.
+ * Created by AnkitNigam on 07/29/2018.
  */
 public class JSONParser {
     private static final Logger logger = LoggerFactory.getLogger(JSONParser.class);
-    public static String getValueFromJSON(String jsonString, String jsonPath){
-        String value = null;
+
+    public static String getAddNewCountryJson(String newCountryName, String alpha2Code, String alpha3Code){
+        String newCountryJson = null;
+        ObjectMapper mapper = null;
         try{
-            value = JsonPath.from(jsonString).get(jsonPath).toString().replace("[","").replace("]","");
-            logger.debug(value + " found in JSON");
-        }catch (Exception ex){
-            logger.debug("Error in finding value in JSON response");
-            ex.printStackTrace();
+            logger.info("Creating new country json");
+            NewCountry newCountry = new NewCountry();
+            newCountry.setName(newCountryName);
+            newCountry.setAlpha2Code(alpha2Code);
+            newCountry.setAlpha3Code(alpha3Code);
+            newCountryJson = mapper.writeValueAsString(newCountry);
+
+            logger.info("Generate JSON: " + newCountryJson);
+
+        }catch (Exception e){
+            logger.error("Error in generating new country json");
+            e.printStackTrace();
         }finally {
-            return value;
+            return newCountryJson;
         }
     }
 
-    public static boolean isValueExistInJson(String jsonString, String jsonPath){
-        boolean flag = false;
-        logger.debug("Checking if path value exist in JSON string");
-        try{
-            if (!StringUtils.isEmpty(getValueFromJSON(jsonString, jsonPath))){
-                logger.debug("Value available in JSON string");
-                flag = true;
-            }else {
-                logger.debug("Value not found in JSON string");
-            }
-        }catch (Exception ex){
-            logger.debug("Error in finding value in JSON response");
-            ex.printStackTrace();
-        }finally {
-            return flag;
-        }
-    }
+
 }

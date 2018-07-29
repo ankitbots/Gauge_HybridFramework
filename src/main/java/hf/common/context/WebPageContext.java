@@ -1,10 +1,10 @@
 package hf.common.context;
 
 import hf.common.constants.Constants;
-import hf.common.driver.DriverFactory;
 import hf.common.repository.DataNotFoundInRepoExecption;
 import hf.common.repository.PageElement;
 import hf.common.repository.RepositoryContext;
+import hf.common.driver.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -19,6 +19,7 @@ import org.slf4j.LoggerFactory;
 public class WebPageContext implements IWebPageContext {
     private static final Logger logger = LoggerFactory.getLogger(WebPageContext.class);
     private static WebDriverWait wait;
+    private static WebDriverWait shortWait;
     private static WebPageContext webPageContext;
     private WebPageContext(){}
     public static WebPageContext getInstance(){
@@ -31,7 +32,7 @@ public class WebPageContext implements IWebPageContext {
     private RepositoryContext repository = RepositoryContext.getInstance();
     private ExpectedCondition<Boolean> document_readyState_toBeComplete = new ExpectedCondition<Boolean>() {
         public Boolean apply(WebDriver webDriver) {
-            return Boolean.valueOf(((JavascriptExecutor)DriverFactory.getWebDriver()).executeScript("return document.readyState", new Object[0]).toString().equalsIgnoreCase("complete"));
+            return Boolean.valueOf(((JavascriptExecutor)Driver.webDriver).executeScript("return document.readyState", new Object[0]).toString().equalsIgnoreCase("complete"));
         }
     };
 
@@ -50,15 +51,24 @@ public class WebPageContext implements IWebPageContext {
 
     @Override
     public WebDriver getRealDriver() {
-        return DriverFactory.getWebDriver();
+        //return DriverFactory.getWebDriver();
+        return Driver.webDriver;
     }
 
     @Override
     public WebDriverWait getWait() {
         if (wait==null){
-            wait = new WebDriverWait(DriverFactory.getWebDriver(), Constants.WAIT_TIMEOUT);
+            wait = new WebDriverWait(Driver.webDriver, Constants.WAIT_TIMEOUT);
         }
         return wait;
+    }
+
+    @Override
+    public WebDriverWait getShortWait() {
+        if (shortWait==null){
+            shortWait = new WebDriverWait(Driver.webDriver, Constants.SHORT_WAIT_TIMEOUT);
+        }
+        return shortWait;
     }
 
     @Override

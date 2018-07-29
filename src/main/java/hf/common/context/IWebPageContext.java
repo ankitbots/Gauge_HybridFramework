@@ -13,6 +13,7 @@ public interface IWebPageContext {
     By getElementLocator(String var1);
     WebDriver getRealDriver();
     WebDriverWait getWait();
+    WebDriverWait getShortWait();
     void waitForCurrentPageLoad() throws Exception;
     void setContextCurrentPage(String var1);
 }

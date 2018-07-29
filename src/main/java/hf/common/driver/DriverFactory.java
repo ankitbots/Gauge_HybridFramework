@@ -3,6 +3,7 @@ package hf.common.driver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -34,12 +35,19 @@ public class DriverFactory {
                         capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
                         InternetExplorerOptions internetExplorerOptions = new InternetExplorerOptions(capabilities);
                         driver = new InternetExplorerDriver(internetExplorerOptions);
+                        break;
                     case "FIREFOX":
                         //Launch Firefox browser
                         logger.info("Launching FireFox browser ");
                         System.setProperty("webdriver.gecko.driver", Paths.get(".").toAbsolutePath().normalize().toString() + "/drivers/geckodriver/geckodriver.exe");
                         driver = new FirefoxDriver();
-
+                        break;
+                    case "HTMLUNIT":
+                        //Launch Headless browser
+                        logger.info("Launching Chrome browser");
+                        System.setProperty("webdriver.chrome.driver", Paths.get(".").toAbsolutePath().normalize().toString() + "/drivers/chromedriver/chromedriver.exe");
+                        driver = new HtmlUnitDriver(true);
+                        break;
                     default:
                         //Launch Chrome browser
                         logger.info("Launching Chrome browser");

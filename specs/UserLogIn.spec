@@ -5,12 +5,15 @@ Created by AnkitNigam on 7/28/2018
 ```````````Using external file to make seprate data from test case
 ```````````Can execute same test multiple time depending on the number of rows in csv
 
+
 table:src/test/resources/TestData/logInData.csv
 
 * User Navigate to application home
 
 Verify user able to SignIn
 ----------------
+tags: logIn
+
 * User on "Home" page
 * User click "SignIn" button
 * User on "Authentication" page
@@ -22,6 +25,7 @@ Verify user able to SignIn
 * "CustomerName" as <FullName> displaying
 * "Logout" is displaying
 * "URL" contains "controller=my-account"
+* User click "Logout" button
 
 
 

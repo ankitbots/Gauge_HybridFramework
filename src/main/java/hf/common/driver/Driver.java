@@ -1,3 +1,5 @@
+package hf.common.driver;
+
 import com.thoughtworks.gauge.AfterSuite;
 import com.thoughtworks.gauge.BeforeSuite;
 import hf.common.driver.DriverFactory;
@@ -10,7 +12,7 @@ import java.nio.file.Paths;
 /**
  * Created by AnkitNigam on 7/27/2018.
  */
-public class Hooks {
+public class Driver {
     public static WebDriver webDriver;
 
     @BeforeSuite
@@ -24,6 +26,6 @@ public class Hooks {
     }
     @AfterSuite
     public void tearDown(){
-        webDriver.quit();
+        webDriver.close();
     }
 }

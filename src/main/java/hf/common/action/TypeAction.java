@@ -23,7 +23,7 @@ public class TypeAction extends AbstractBaseAction implements IInputAction {
         boolean flag = false;
         try{
             logger.info("Enter text " + value[0] + " in field " + name);
-            if(name.toLowerCase().contains("NewEmailAddress")){
+            if(name.equalsIgnoreCase("NewEmailAddress")){
                 value[0] = RandGenerator.getRandString("EMAIL",15,value[0].replace("@",""));
                 scenarioStore.put("EMAIL", value[0]);
                 Gauge.writeMessage("Email Address: " + value[0]);

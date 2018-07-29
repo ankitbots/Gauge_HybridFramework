@@ -17,6 +17,7 @@
         <restassured.version>3.0.7</restassured.version>
         <gauge.java.version>0.6.8</gauge.java.version>
         <junit.version>4.11</junit.version>
+        <jackson.annotations.version>2.9.4</jackson.annotations.version>
 
         <!--Test Properties-->
        <!-- <applicationURL>http://automationpractice.com/index.php</applicationURL>
@@ -117,5 +118,16 @@
             <artifactId>log4j</artifactId>
             <version>RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.annotations.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.annotations.version}</version>
+        </dependency>
+
     </dependencies>
 </project>

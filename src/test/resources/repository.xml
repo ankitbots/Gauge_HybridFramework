@@ -4,6 +4,7 @@
         <uiElements>
             <uiobject name="Home" type="xpath"><locator>//title[.='My Store']</locator></uiobject>
             <uiobject name="SignIn" type="className"><locator>login</locator></uiobject>
+            <uiobject name="Logout" type="className"><locator>logout</locator></uiobject>
         </uiElements>
     </page>
     <page name="Authentication">
@@ -85,6 +86,7 @@
             <uiobject name="ShippingTab" type="xpath"><locator>//li[@class='step_done step_done_last four']</locator></uiobject>
             <uiobject name="PaymentTab" type="xpath"><locator>//li[@id='step_end' and @class='step_current last']</locator></uiobject>
             <uiobject name="OrderCompleteMessage" type="xpath"><locator>//p[@class='cheque-indent']/strong</locator></uiobject>
+            <uiobject name="Logout" type="className"><locator>logout</locator></uiobject>
         </uiElements>
     </page>
 </pages>

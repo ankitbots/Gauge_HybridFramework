@@ -1,0 +1,4 @@
+CountryISO2Code,Resopnse_Messages,Name,Alpha2_Code,Alpha3_Code
+US,"Country found matching code [US].","United States of America","US","USA"
+DE,"Country found matching code [DE].","Germany","DE","DEU"
+GB,"Country found matching code [GB].","United Kingdom of Great Britain and Northern Ireland","GB","GBR"

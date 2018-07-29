@@ -10,7 +10,7 @@
     <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
     <context:component-scan base-package="hf.common"/>
 
-    <bean id="hooks" class="Hooks"></bean>
+    <bean id="hooks" class="hf.common.driver.Driver"></bean>
 
     <bean id="jaxbMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
         <property name="classesToBeBound">
