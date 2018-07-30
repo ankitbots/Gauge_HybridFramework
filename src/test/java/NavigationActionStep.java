@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 public class NavigationActionStep {
 
 
-    public NavigationAction navigationAction;
+    private NavigationAction navigationAction;
     public NavigationActionStep(){
         navigationAction = new NavigationAction();
     }
@@ -22,6 +22,7 @@ public class NavigationActionStep {
 
     @Step("User Navigate to application home")
     public void userNavigateToApplicationHome() throws Exception {
+        logger.info("Launching the application...");
         boolean flag = false;
         try{
             String url = System.getenv("APP_URL");

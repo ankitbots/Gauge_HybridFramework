@@ -20,6 +20,7 @@ public class APIVerifyAction {
         boolean flag = false;
         String responseString = null;
         String fullJsonPath = null;
+        logger.info("Checking expected value " + expectedValue + " available in response");
         try {
             responseString = (String) scenarioStore.get("RESPONSE");
 
@@ -37,9 +38,9 @@ public class APIVerifyAction {
 
             if (!StringUtils.isEmpty(responseString) && !StringUtils.isEmpty(fullJsonPath)) {
                 flag = JsonPath.from(responseString).get(fullJsonPath).equals(true);
-                logger.info("Is '" + expectedValue + "' available in response: " + flag);
+                logger.info( flag ? expectedValue + "' available in response" : expectedValue + "' not available in response" );
             } else {
-
+                logger.info("Response body or jsonpath cannot be empty");
             }
 
         } catch (Exception ex) {

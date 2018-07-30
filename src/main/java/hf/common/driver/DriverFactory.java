@@ -33,6 +33,8 @@ public class DriverFactory {
                         DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
                         //Disable protection mode
                         capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
+                        capabilities.setCapability(InternetExplorerDriver.IE_ENSURE_CLEAN_SESSION,true);
+                        capabilities.setCapability(InternetExplorerDriver.ENABLE_ELEMENT_CACHE_CLEANUP,true);
                         InternetExplorerOptions internetExplorerOptions = new InternetExplorerOptions(capabilities);
                         driver = new InternetExplorerDriver(internetExplorerOptions);
                         break;
@@ -41,12 +43,6 @@ public class DriverFactory {
                         logger.info("Launching FireFox browser ");
                         System.setProperty("webdriver.gecko.driver", Paths.get(".").toAbsolutePath().normalize().toString() + "/drivers/geckodriver/geckodriver.exe");
                         driver = new FirefoxDriver();
-                        break;
-                    case "HTMLUNIT":
-                        //Launch Headless browser
-                        logger.info("Launching Chrome browser");
-                        System.setProperty("webdriver.chrome.driver", Paths.get(".").toAbsolutePath().normalize().toString() + "/drivers/chromedriver/chromedriver.exe");
-                        driver = new HtmlUnitDriver(true);
                         break;
                     default:
                         //Launch Chrome browser

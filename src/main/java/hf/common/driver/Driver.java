@@ -6,6 +6,8 @@ import hf.common.driver.DriverFactory;
 import hf.common.repository.RepositoryContext;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.nio.file.Paths;
 
@@ -14,10 +16,12 @@ import java.nio.file.Paths;
  */
 public class Driver {
     public static WebDriver webDriver;
+    private static final Logger logger = LoggerFactory.getLogger(Driver.class);
 
     @BeforeSuite
     public void stepUp(){
         PropertyConfigurator.configure(Paths.get(".") + "/src/log4j.properties");
+        logger.info("Initializing web driver");
         webDriver = DriverFactory.getWebDriver();
         RepositoryContext repositoryContext = RepositoryContext.getInstance();
         repositoryContext.setRepoPath(Paths.get(".") + System.getenv("REPOSITORY_PATH"));
@@ -26,6 +30,16 @@ public class Driver {
     }
     @AfterSuite
     public void tearDown(){
-        webDriver.close();
+        try {
+            logger.info("Closing webdriver");
+            webDriver.close();
+            //webDriver.quit();
+        }catch (Exception ex){
+            logger.error("Error in closing web driver");
+            ex.printStackTrace();
+        }finally {
+            webDriver.quit();
+        }
+
     }
 }

@@ -11,7 +11,5 @@ Create and validate new country - LO
 ----------------
 * User create "NEW_COUNTRY" with "Test Country","LO","TCY"
 * User get "COUNTRY" as "LO"
-* Verify "Test Country" with "COUNTRY_NAME_PATH" present in response
-* Verify "LO" with "COUNTRY_ALPHA2_PATH" present in response
-* Verify "TCY" with "COUNTRY_ALPHA3_PATH" present in response
+* Verify "Country found matching code [LO]." with "MESSAGE_PATH" present in response
 

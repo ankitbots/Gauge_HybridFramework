@@ -27,33 +27,38 @@ public class PostAction {
     public boolean addNewCountry(String endPoint, String newCountryName, String alpha2Code, String alpha3Code) {
         boolean flag = false;
         String baseUrl = System.getenv("BASE_URL");
-        Response response = null;
-        String jsonBody = null;
+        Response response;
+        String jsonBody;
         try {
             if (!StringUtils.isEmpty(baseUrl)) {
                 //Finding endpoint based on the value passed in test case
                 if (endPoint.equalsIgnoreCase("NEW_COUNTRY")) {
-                    endPoint = Constants.ADD_NEW_OUNTRY;
+                    endPoint = Constants.ADD_NEW_COUNTRY;
                 }
 
                 if (!StringUtils.isEmpty(endPoint)) {
                     //Concatenate base url with endpoint
                     String url = baseUrl + endPoint;
                     logger.info("Post URL: " + url);
-                    jsonBody = JSONParser.getAddNewCountryJson(newCountryName,alpha2Code,alpha3Code);
+                    jsonBody = JSONParser.getAddNewCountryJson(newCountryName, alpha2Code, alpha3Code);
 
-                    HashMap<String,String> headers = new HashMap<>();
-                    headers.put(HttpHeaders.CONTENT_TYPE,"application/json; charset=UTF-8");
-                    headers.put(HttpHeaders.ACCEPT,"application/json");
+                    HashMap<String, String> headers = new HashMap<>();
+                    headers.put(HttpHeaders.CONTENT_TYPE, "application/json; charset=UTF-8");
+                    headers.put(HttpHeaders.ACCEPT, "application/json");
                     Gauge.writeMessage(jsonBody);
                     response = given()
                             .headers(headers)
                             .body(jsonBody)
                             .post(url);
 
-                    if (response.statusCode() == HttpStatus.SC_CREATED) {
+                    //Any one of them i.e. 200 or 201 with return
+                    if (response.statusCode() == HttpStatus.SC_OK) {
                         logger.debug("New country successfully added");
-                        logger.info("Request body: " + response.getBody().asString());
+                        logger.info("Response body: " + response.getBody().asString());
+                        flag = true;
+                    } else if (response.statusCode() == HttpStatus.SC_CREATED) {
+                        logger.debug("New country successfully created");
+                        logger.info("Response body: " + response.getBody().asString());
                         flag = true;
                     } else if (response.statusCode() == HttpStatus.SC_BAD_REQUEST) {
                         logger.debug("Bad request");

@@ -18,23 +18,22 @@ import org.slf4j.LoggerFactory;
  */
 public class WebPageContext implements IWebPageContext {
     private static final Logger logger = LoggerFactory.getLogger(WebPageContext.class);
+
     private static WebDriverWait wait;
     private static WebDriverWait shortWait;
     private static WebPageContext webPageContext;
     private WebPageContext(){}
     public static WebPageContext getInstance(){
         if (webPageContext==null){
+            logger.debug("Creating instance of web context");
             webPageContext = new WebPageContext();
         }
         return webPageContext;
     }
 
     private RepositoryContext repository = RepositoryContext.getInstance();
-    private ExpectedCondition<Boolean> document_readyState_toBeComplete = new ExpectedCondition<Boolean>() {
-        public Boolean apply(WebDriver webDriver) {
-            return Boolean.valueOf(((JavascriptExecutor)Driver.webDriver).executeScript("return document.readyState", new Object[0]).toString().equalsIgnoreCase("complete"));
-        }
-    };
+    private ExpectedCondition<Boolean> document_readyState_toBeComplete =
+            webDriver -> Boolean.valueOf(((JavascriptExecutor)Driver.webDriver).executeScript("return document.readyState", new Object[0]).toString().equalsIgnoreCase("complete"));
 
     @Override
     public By getElementLocator(String elementName) {
@@ -42,7 +41,9 @@ public class WebPageContext implements IWebPageContext {
         try {
             PageElement element = this.repository.getElement(elementName);
             locElement = this.getLocator(element);
+            logger.debug("Locator found for object " + elementName);
         } catch (DataNotFoundInRepoExecption dataNotFoundInRepoExecption) {
+            logger.info(elementName + " not found in repository");
             dataNotFoundInRepoExecption.printStackTrace();
         }finally {
             return locElement;
@@ -52,12 +53,14 @@ public class WebPageContext implements IWebPageContext {
     @Override
     public WebDriver getRealDriver() {
         //return DriverFactory.getWebDriver();
+        logger.debug("Returning driver");
         return Driver.webDriver;
     }
 
     @Override
     public WebDriverWait getWait() {
         if (wait==null){
+            logger.debug("Initializing WebDriverWait");
             wait = new WebDriverWait(Driver.webDriver, Constants.WAIT_TIMEOUT);
         }
         return wait;
@@ -66,18 +69,21 @@ public class WebPageContext implements IWebPageContext {
     @Override
     public WebDriverWait getShortWait() {
         if (shortWait==null){
+            logger.debug("Initializing shortWaitDriver");
             shortWait = new WebDriverWait(Driver.webDriver, Constants.SHORT_WAIT_TIMEOUT);
         }
         return shortWait;
     }
 
     @Override
-    public void waitForCurrentPageLoad() throws Exception {
+    public void waitForCurrentPageLoad()  {
+        logger.debug("Waiting to load page");
         wait.until(this.document_readyState_toBeComplete);
     }
 
     @Override
     public void setContextCurrentPage(String pageName) {
+        logger.debug("Set context as " + pageName);
         this.repository.setContextCurrentPage(pageName);
     }
 

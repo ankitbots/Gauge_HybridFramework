@@ -20,9 +20,9 @@
         <jackson.annotations.version>2.9.4</jackson.annotations.version>
 
         <!--Test Properties-->
-       <!-- <applicationURL>http://automationpractice.com/index.php</applicationURL>
+        <applicationURL>http://automationpractice.com/index.php</applicationURL>
 		<apiURL>http://restcountries.eu</apiURL>
-        <browser>chrome</browser>-->
+        <browser>chrome</browser>
     </properties>
 
     <build>
@@ -32,11 +32,11 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.21.0</version>
                 <configuration>
-                 <!--   <systemPropertyVariables>
+                    <systemPropertyVariables>
                         <applicationURL>${applicationURL}</applicationURL>
                         <apiURL>${apiURL}</apiURL>
                         <browser>${browser}</browser>
-                    </systemPropertyVariables>-->
+                    </systemPropertyVariables>
                 </configuration>
             </plugin>
             <plugin>
@@ -64,14 +64,7 @@
                 </configuration>
             </plugin>
         </plugins>
-        <resources>
-            <resource>
-                <directory>src/test/resources</directory>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-            </resource>
-        </resources>
+
     </build>
 
     <dependencies>

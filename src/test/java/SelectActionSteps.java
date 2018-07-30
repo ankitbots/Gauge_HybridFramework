@@ -1,13 +1,15 @@
 import com.thoughtworks.gauge.Step;
 import hf.common.action.SelectAction;
 import org.junit.Assert;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by AnkitNigam on 7/28/2018.
  */
 public class SelectActionSteps {
-    public SelectAction selectAction;
-
+    private static final Logger logger = LoggerFactory.getLogger(SelectActionSteps.class);
+    private SelectAction selectAction;
     public SelectActionSteps() {
         this.selectAction = new SelectAction();
     }
@@ -16,6 +18,7 @@ public class SelectActionSteps {
     public void setInput(String name, String byType, String value) throws Exception {
         boolean flag = false;
         try {
+            logger.info("Select " + name + " by " + byType + " as " + value);
             flag = selectAction.setInput(name, byType, value);
             Assert.assertTrue("Failed to select filter: " + name + " for value: " + value, flag);
         } catch (AssertionError assertionError) {

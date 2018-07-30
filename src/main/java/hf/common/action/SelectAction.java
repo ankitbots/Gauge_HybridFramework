@@ -22,8 +22,10 @@ public class SelectAction extends AbstractBaseAction implements IInputAction {
             WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(context.getElementLocator(name)));
             Select dropdown = new Select(element);
             if(value[0].equalsIgnoreCase("text")) {
+                logger.info("Selecting by text");
                 dropdown.selectByVisibleText(value[1]);
             }else if(value[0].equalsIgnoreCase("value")) {
+                logger.info("Selecting by value");
                 dropdown.selectByValue(value[1]);
             }
             flag = true;

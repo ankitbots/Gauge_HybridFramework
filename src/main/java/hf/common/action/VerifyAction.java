@@ -40,13 +40,13 @@ public class VerifyAction extends AbstractBaseAction {
         String actualValue = null;
         try {
             WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(context.getElementLocator(name)));
-            logger.info("Textbox found: " + name);
+            logger.info("Object found: " + name);
             actualValue = element.getText().trim();
             if(expectedValue.equalsIgnoreCase("COMPLETE_NAME")){
                 expectedValue = (String) scenarioStore.get("FIRST_NAME") + " " + (String) scenarioStore.get("LAST_NAME");
             }
             if (actualValue.equals(expectedValue)){
-                logger.debug("Expected text found");
+                logger.info("Expected text found");
                 flag = true;
             }else {
                 logger.info("Expected text not found on the page");
@@ -55,6 +55,7 @@ public class VerifyAction extends AbstractBaseAction {
             }
         }catch (TimeoutException e){
             logger.error("TimeoutException - Object not found: " + name);
+            e.printStackTrace();
         }catch (Exception ex){
             logger.error("Error in finding object " + name);
             ex.printStackTrace();
@@ -67,13 +68,16 @@ public class VerifyAction extends AbstractBaseAction {
     public boolean verifyPageAndSetContext(String pageName) {
         boolean flag = false;
         try {
+            logger.info("Waiting of page to load...");
             context.waitForCurrentPageLoad();
+            logger.info("Setting the page context as " + pageName);
             context.setContextCurrentPage(pageName);
             WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(context.getElementLocator(pageName)));
             logger.info("Page found: " + pageName);
             flag = true;
         }catch (TimeoutException e){
             logger.error("TimeoutException - Page not found: " + pageName);
+            e.printStackTrace();
         }catch (Exception ex){
             logger.error("Error in finding Page " + pageName);
             ex.printStackTrace();
@@ -91,18 +95,19 @@ public class VerifyAction extends AbstractBaseAction {
                 logger.info("Current URL: " + actualValue);
             }else {
                 WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(context.getElementLocator(objName)));
-                logger.info("Textbox found: " + objName);
+                logger.info("Object found: " + objName);
                 actualValue = element.getText().trim();
             }
             if (actualValue.contains(expectedValue)){
-                logger.debug("Expected sub-text found");
+                logger.info("Expected sub-text found");
                 flag = true;
             }else {
-                logger.info("Expected sub-text not found on the page");
+                logger.info("Expected sub-text not found in the object");
                 flag = false;
             }
         }catch (TimeoutException e){
             logger.error("TimeoutException - Object not found: " + objName);
+            e.printStackTrace();
         }catch (Exception ex){
             logger.error("Error in finding object " + objName);
             ex.printStackTrace();

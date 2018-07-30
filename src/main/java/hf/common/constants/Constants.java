@@ -13,7 +13,7 @@ public class Constants {
     //API endpoints
     public static final String ALL_COUNTRIES="/get/all";
     public static final String COUNTRY="/get/iso2code/%s";
-    public static final String ADD_NEW_OUNTRY ="/post/addnewcountry";
+    public static final String ADD_NEW_COUNTRY ="/post/addnewcountry";
 
     //JSONPATH
     public static final String COUNTRIES_ALPHA2_PATH="RestResponse.result.findAll{result->result.alpha2_code=='%s'}.size()==1";

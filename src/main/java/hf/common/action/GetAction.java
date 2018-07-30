@@ -35,7 +35,7 @@ public class GetAction {
                 //Finding endpoint based on the value passed in test case
                 if (endPoint.equalsIgnoreCase("ALL_COUNTRIES")) {
                     endPoint = Constants.ALL_COUNTRIES;
-                }else if (endPoint.equalsIgnoreCase("COUNTRY")) {
+                } else if (endPoint.equalsIgnoreCase("COUNTRY")) {
                     endPoint = Constants.COUNTRY;
                 } else {
                     logger.info("Endpoint: " + endPoint + " not found in Contants list");
@@ -44,14 +44,15 @@ public class GetAction {
 
                 if (!StringUtils.isEmpty(endPoint)) {
                     //Concatenate base url with endpoint
-                    String url = baseUrl + String.format(endPoint,queryParameter);
+                    String url = baseUrl + String.format(endPoint, queryParameter);
                     response = given()
                             .get(url);
                     if (response.statusCode() == HttpStatus.SC_OK) {
-                        logger.debug("Response successfully fetched");
                         jsonString = response.getBody().asString();
-                        scenarioStore.put("RESPONSE",jsonString);
+                        logger.debug("Response successfully fetched");
+                        scenarioStore.put("RESPONSE", jsonString);
                         flag = true;
+
                     } else if (response.statusCode() == HttpStatus.SC_BAD_REQUEST) {
                         logger.debug("Bad request");
                     } else {

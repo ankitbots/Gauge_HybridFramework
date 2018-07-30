@@ -27,7 +27,7 @@ public class ImageButtonAction extends AbstractBaseAction implements IClickActio
             element = wait.until(ExpectedConditions.visibilityOfElementLocated(context.getElementLocator(name)));
 
             //Actions are not working on firefox
-            if(browser.equalsIgnoreCase("firefox")) {
+            if(browser.equalsIgnoreCase("firefox") || browser.equalsIgnoreCase("ie")) {
                 String mouseOverScript = "if(document.createEvent){var evObj = document.createEvent('MouseEvents');evObj.initEvent('mouseover', true, false); " +
                         "arguments[0].dispatchEvent(evObj);} else if(document.createEventObject) { arguments[0].fireEvent('onmouseover');}";
                 ((JavascriptExecutor) context.getRealDriver()).executeScript(mouseOverScript,

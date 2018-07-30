@@ -22,20 +22,23 @@ public class TypeAction extends AbstractBaseAction implements IInputAction {
     public boolean setInput(String name, String... value) {
         boolean flag = false;
         try{
-            logger.info("Enter text " + value[0] + " in field " + name);
+            //Generating dynamic email address
             if(name.equalsIgnoreCase("NewEmailAddress")){
                 value[0] = RandGenerator.getRandString("EMAIL",15,value[0].replace("@",""));
                 scenarioStore.put("EMAIL", value[0]);
                 Gauge.writeMessage("Email Address: " + value[0]);
-            }else if(name.equalsIgnoreCase("FirstName")){scenarioStore.put("FIRST_NAME", value[0]);}
+            }//Storing first name and last name for validating on other steps
+            else if(name.equalsIgnoreCase("FirstName")){scenarioStore.put("FIRST_NAME", value[0]);}
             else if(name.equalsIgnoreCase("LastName")){scenarioStore.put("LAST_NAME", value[0]);}
 
+            logger.info("Enter text " + value[0] + " in field " + name);
             WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(context.getElementLocator(name)));
             element.sendKeys(value[0]);
             flag = true;
             logger.debug("Successfully able to enter value: " + value[0]);
         }catch (TimeoutException ex){
             logger.error("TimeoutException -  Unable to find textbox: " + name);
+            ex.printStackTrace();
         }
         catch (Exception ex){
             logger.error("Error in entering a value in textbox: " + name);

@@ -20,6 +20,7 @@ public class JSONParser {
             newCountry.setName(newCountryName);
             newCountry.setAlpha2Code(alpha2Code);
             newCountry.setAlpha3Code(alpha3Code);
+            mapper = new ObjectMapper();
             newCountryJson = mapper.writeValueAsString(newCountry);
 
             logger.info("Generate JSON: " + newCountryJson);

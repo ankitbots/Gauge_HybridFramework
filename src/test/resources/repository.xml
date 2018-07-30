@@ -47,7 +47,7 @@
             <uiobject name="CustomerName" type="className"><locator>account</locator></uiobject>
             <uiobject name="WelcomeMessage" type="className"><locator>info-account</locator></uiobject>
             <uiobject name="Logout" type="className"><locator>logout</locator></uiobject>
-            <uiobject name="WomenLink" type="linkText"><locator>Women</locator></uiobject>
+            <uiobject name="WomenLink" type="xpath"><locator>//a[@title='Women']</locator></uiobject>
         </uiElements>
     </page>
     <page name="WomenStore">
