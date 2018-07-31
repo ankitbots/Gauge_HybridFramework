@@ -1,6 +1,6 @@
 # HybridAutomation Framework
 
-This is a test automation framework to implement the task 1 and task 2 for Hello Fresh. I have designed a single Hybrid Framework to test Web GUI and SOA test cases.
+This is a test automation framework to implement the task 1 and task 2 for Hello Fresh. I have designed a single Hybrid Automation Framework to test Web GUI and SOA test cases.
 
 To design this framework I am using Thoughworks Gauge + Selenium WebDriver + RestAssured librariers. 
 
