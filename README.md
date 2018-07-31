@@ -129,7 +129,7 @@ Reports
 * Html reports are available in report folder
 * All failed test steps will contain snapshot of the failure.
 
-![Report]("Gauge_HybridFramework/Gauge_Report.jpg")
+![Report]("https://github.com/ankitbots/Gauge_HybridFramework/blob/master/Gauge_Report.jpg")
 
 ```
 Logs
