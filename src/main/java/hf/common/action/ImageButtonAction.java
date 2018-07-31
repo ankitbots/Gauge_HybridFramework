@@ -2,6 +2,7 @@ package hf.common.action;
 
 
 import hf.common.utils.Highlight;
+import hf.common.utils.PropertiesHelper;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
@@ -21,7 +22,8 @@ public class ImageButtonAction extends AbstractBaseAction implements IClickActio
     public boolean click(String name) {
         WebElement element;
         boolean flag = false;
-        String browser = System.getenv("BROWSER");
+        //String browser = System.getenv("BROWSER");
+        String browser = PropertiesHelper.getPropertyValue("app_browser");
         logger.info("Clicking image button: " + name);
         try {
             element = wait.until(ExpectedConditions.visibilityOfElementLocated(context.getElementLocator(name)));

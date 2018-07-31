@@ -9,6 +9,8 @@ Every heading in this file denotes a scenario. Every bulleted point denotes a st
 
 Create and validate new country - LO
 ----------------
+tags: addNewCountry
+
 * User create "NEW_COUNTRY" with "Test Country","LO","TCY"
 * User get "COUNTRY" as "LO"
 * Verify "Country found matching code [LO]." with "MESSAGE_PATH" present in response

@@ -53,7 +53,6 @@ public class WebPageContext implements IWebPageContext {
     @Override
     public WebDriver getRealDriver() {
         //return DriverFactory.getWebDriver();
-        logger.debug("Returning driver");
         return Driver.webDriver;
     }
 

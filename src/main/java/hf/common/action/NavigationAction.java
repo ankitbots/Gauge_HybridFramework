@@ -36,6 +36,7 @@ public class NavigationAction extends AbstractBaseAction {
                 logger.info("Signing out...");
                 buttonAction.click("Logout");
             }catch (TimeoutException ex){
+                //Skip
             }
 
             flag = true;

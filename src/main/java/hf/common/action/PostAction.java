@@ -5,6 +5,7 @@ import com.thoughtworks.gauge.datastore.DataStore;
 import com.thoughtworks.gauge.datastore.DataStoreFactory;
 import hf.common.constants.Constants;
 import hf.common.utils.JSONParser;
+import hf.common.utils.PropertiesHelper;
 import io.restassured.response.Response;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpHeaders;
@@ -26,7 +27,8 @@ public class PostAction {
 
     public boolean addNewCountry(String endPoint, String newCountryName, String alpha2Code, String alpha3Code) {
         boolean flag = false;
-        String baseUrl = System.getenv("BASE_URL");
+        //String baseUrl = System.getenv("BASE_URL");
+        String baseUrl = PropertiesHelper.getPropertyValue("api_url");
         Response response;
         String jsonBody;
         try {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
-<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="true">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
 
     <appender name="applog-file" class="org.apache.log4j.FileAppender">
         <param name="file" value=".//hf_logs//testhfRegression.log"/>
@@ -40,18 +40,18 @@
         </layout>
     </appender>
 
-    <logger name="com.hf" additivity="false">
+    <logger name="com.hf">
         <level value="debug"/>
         <appender-ref ref="console"/>
         <appender-ref ref="applog-file"/>
     </logger>
 
-    <logger name="SYSOUT" additivity="false">
+    <logger name="SYSOUT">
         <level value="info"/>
         <appender-ref ref="info-file"/>
     </logger>
 
-    <logger name="SYSERR" additivity="false">
+    <logger name="SYSERR">
         <level value="error"/>
         <appender-ref ref="error-file"/>
     </logger>

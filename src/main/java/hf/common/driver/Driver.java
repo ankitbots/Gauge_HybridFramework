@@ -1,10 +1,10 @@
 package hf.common.driver;
 
+import com.google.common.io.Resources;
 import com.thoughtworks.gauge.AfterSuite;
 import com.thoughtworks.gauge.BeforeSuite;
-import hf.common.driver.DriverFactory;
 import hf.common.repository.RepositoryContext;
-import org.apache.log4j.PropertyConfigurator;
+import org.apache.log4j.xml.DOMConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +20,8 @@ public class Driver {
 
     @BeforeSuite
     public void stepUp(){
-        PropertyConfigurator.configure(Paths.get(".") + "/src/log4j.properties");
+        DOMConfigurator.configure(Paths.get(".") + "/src/log4j.xml");
+
         logger.info("Initializing web driver");
         webDriver = DriverFactory.getWebDriver();
         RepositoryContext repositoryContext = RepositoryContext.getInstance();
@@ -32,14 +33,12 @@ public class Driver {
     public void tearDown(){
         try {
             logger.info("Closing webdriver");
-            webDriver.close();
-            //webDriver.quit();
+            //close failed for firefox
+            //webDriver.close();
+            webDriver.quit();
         }catch (Exception ex){
             logger.error("Error in closing web driver");
             ex.printStackTrace();
-        }finally {
-            webDriver.quit();
         }
-
     }
 }

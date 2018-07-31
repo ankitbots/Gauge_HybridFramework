@@ -3,6 +3,7 @@ package hf.common.action;
 import com.thoughtworks.gauge.datastore.DataStore;
 import com.thoughtworks.gauge.datastore.DataStoreFactory;
 import hf.common.constants.Constants;
+import hf.common.utils.PropertiesHelper;
 import io.restassured.response.Response;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpStatus;
@@ -26,7 +27,8 @@ public class GetAction {
         boolean flag = false;
 
         logger.info("GET the response for " + endPoint);
-        String baseUrl = System.getenv("BASE_URL");
+        //String baseUrl = System.getenv("BASE_URL");
+        String baseUrl = PropertiesHelper.getPropertyValue("api_url");
         String jsonString = null;
         Response response = null;
         try {
