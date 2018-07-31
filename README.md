@@ -128,6 +128,7 @@ Reports
 ```
 * Html reports are available in report folder
 * All failed test steps will contain snapshot of the failure.
+![Report]("Gauge_Report.jpg")
 
 ```
 Logs
