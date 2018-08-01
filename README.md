@@ -18,6 +18,7 @@ _In this framework I have tried catering all the requirements mention in the aut
 - [Java](https://www.java.com/en/download/index.jsp)
 - [Configure Maven](https://maven.apache.org/download.cgi)
 - Browser Chrome/Firefox/IE
+- Browser drivers 
 
 
 ### Installation
@@ -48,6 +49,12 @@ gauge install html-report
 ```
 
 For any help on installation please refer [link](https://docs.gauge.org/latest/index.html)
+
+Add **Browser Drivers** in drivers/{browser} folder
+
+```
+like: /drivers/chromedriver/chromedriver.exe
+```
 
 ## Running the tests
 
@@ -125,7 +132,7 @@ Repository
 Driver
 ```
 * Driver folder contains DriverFactory. It allows use to test application with different browsers like _Chrome, Firefox and IE_. However, I have tested my scripts only with Chrome and Firefox.
-* User can pass browser using -Denv={browser_name} property.
+* User can pass browser using **-Denv={browser_name}** property and configure driver in `/env/{browser_name}/browser.properties` folder.
 * Environment details like app urls are set using profiles in pom.xml
 
 ```

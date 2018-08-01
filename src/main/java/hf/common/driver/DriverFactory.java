@@ -31,7 +31,7 @@ public class DriverFactory {
                     case "IE":
                         //Launch IE browser
                         logger.info("Launching IE browser ");
-                        System.setProperty("webdriver.ie.driver", Paths.get(".").toAbsolutePath().normalize().toString() + "/drivers/iedriver/IEDriverServer.exe");
+                        System.setProperty("webdriver.ie.driver", Paths.get(".").toAbsolutePath().normalize().toString() + System.getenv("DRIVER_PATH"));
                         DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
                         //Disable protection mode
                         capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
@@ -43,13 +43,13 @@ public class DriverFactory {
                     case "FIREFOX":
                         //Launch Firefox browser
                         logger.info("Launching FireFox browser ");
-                        System.setProperty("webdriver.gecko.driver", Paths.get(".").toAbsolutePath().normalize().toString() + "/drivers/geckodriver/geckodriver.exe");
+                        System.setProperty("webdriver.gecko.driver", Paths.get(".").toAbsolutePath().normalize().toString() + System.getenv("DRIVER_PATH"));
                         driver = new FirefoxDriver();
                         break;
                     default:
                         //Launch Chrome browser
                         logger.info("Launching Chrome browser");
-                        System.setProperty("webdriver.chrome.driver", Paths.get(".").toAbsolutePath().normalize().toString() + "/drivers/chromedriver/chromedriver.exe");
+                        System.setProperty("webdriver.chrome.driver", Paths.get(".").toAbsolutePath().normalize().toString() + System.getenv("DRIVER_PATH"));
                         driver = new ChromeDriver();
                 }
             } catch (Exception ex) {
