@@ -24,7 +24,7 @@ public class TypeAction extends AbstractBaseAction implements IInputAction {
         try{
             //Generating dynamic email address
             if(name.equalsIgnoreCase("NewEmailAddress")){
-                value[0] = RandGenerator.getRandString("EMAIL",15,value[0].replace("@",""));
+                value[0] = RandGenerator.getRandString("EMAIL",20,value[0].replace("@",""));
                 scenarioStore.put("EMAIL", value[0]);
                 Gauge.writeMessage("Email Address: " + value[0]);
             }//Storing first name and last name for validating on other steps
