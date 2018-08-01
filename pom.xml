@@ -53,6 +53,10 @@
         </filters>
         <resources>
             <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
                 <directory>src/test/resources</directory>
                 <filtering>true</filtering>
             </resource>
@@ -65,7 +69,6 @@
             <properties>
                 <app.url>http://automationpractice.com/index.php</app.url>
                 <api.url>http://services.groupkt.com/country</api.url>
-                <app.browser>chrome</app.browser>
             </properties>
         </profile>
         <profile>
@@ -73,7 +76,6 @@
             <properties>
                 <app.url>http://automationpractice.com/index.php</app.url>
                 <api.url>http://services.groupkt.com/country</api.url>
-                <app.browser>firefox</app.browser>
             </properties>
         </profile>
         <profile>
@@ -81,7 +83,6 @@
             <properties>
                 <app.url>http://automationpractice.com/index.php</app.url>
                 <api.url>http://services.groupkt.com/country</api.url>
-                <app.browser>ie</app.browser>
             </properties>
         </profile>
     </profiles>
@@ -108,7 +109,7 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>${slf4j.version}</version>
-            <!--<scope>test</scope>-->
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>

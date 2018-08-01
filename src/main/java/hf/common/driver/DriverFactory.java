@@ -23,8 +23,8 @@ public class DriverFactory {
     public static WebDriver getWebDriver() {
         if (driver == null) {
             try {
-                //String browser = System.getenv("BROWSER");
-                String browser = PropertiesHelper.getPropertyValue("app_browser");
+                String browser = System.getenv("BROWSER");
+                //String browser = PropertiesHelper.getPropertyValue("app_browser");
                 if (browser==null){browser="chrome";}
 
                 switch (browser.toUpperCase()) {

@@ -22,8 +22,8 @@ public class ImageButtonAction extends AbstractBaseAction implements IClickActio
     public boolean click(String name) {
         WebElement element;
         boolean flag = false;
-        //String browser = System.getenv("BROWSER");
-        String browser = PropertiesHelper.getPropertyValue("app_browser");
+        String browser = System.getenv("BROWSER");
+        //String browser = PropertiesHelper.getPropertyValue("app_browser");
         logger.info("Clicking image button: " + name);
         try {
             element = wait.until(ExpectedConditions.visibilityOfElementLocated(context.getElementLocator(name)));

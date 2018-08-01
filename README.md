@@ -1,10 +1,10 @@
 # HybridAutomation Framework
 
-This is a test automation framework to implement the task 1 and task 2 for Hello Fresh. I have designed a single Hybrid Automation Framework to test Web GUI and SOA test cases.
+This is a test automation framework to implement the Task 1 and Task 2 for HelloFresh. I have designed a Hybrid Automation Framework to test **Web GUI** and **SOA** test cases.
 
-To design this framework I am using Thoughworks Gauge + Selenium WebDriver + RestAssured librariers. 
+To design this framework I am using **Thoughworks Gauge** + **Selenium WebDriver** + **RestAssured** libraries. 
 
-In this framework I have tried catering all the requirements mention in the automation task. 
+_In this framework I have tried catering all the requirements mention in the automation task._ 
 
 
 
@@ -13,6 +13,8 @@ In this framework I have tried catering all the requirements mention in the auto
 ### Prerequisites
 
 - [Install Gauge](https://docs.gauge.org/installing.html#installation)
+- [Gauge Java Plugin](https://github.com/getgauge/gauge-java/#gauge-java)
+- [Gauge HTML Report Plugin](https://github.com/getgauge/html-report/blob/master/README.md)
 - [Java](https://www.java.com/en/download/index.jsp)
 - [Configure Maven](https://maven.apache.org/download.cgi)
 - Browser Chrome/Firefox/IE
@@ -33,13 +35,13 @@ PS> Expand-Archive -Path gauge-1.0.0-windows.x86_64.zip -DestinationPath custom_
 ```
 Make sure Gauge added in $PATH
 
-Install Gauge Java plugin
+Install **Gauge Java plugin**
 
 ```
 gauge install java
 ```
 
-Install HTML report plugin
+Install **HTML report plugin**
 
 ```
 gauge install html-report
@@ -49,29 +51,45 @@ For any help on installation please refer [link](https://docs.gauge.org/latest/i
 
 ## Running the tests
 
-All the test cases are available specs folder. 
+All test cases are available under **specs** folder. 
 
 Run the below command to execute all specifications in `specs` directory
 
 ```
-mvn test -P{profile} -DspecsDir=specs
-like:
-mvn test -Pdev -DspecsDir=specs
+mvn test -P{profile} -DspecsDir=specs{optional} -Denv={chrome/firefox/ie}{optional}
 ```
 
-Execute specs In parallel
+Launch using **Chrome**(default option) with minimum options
+```
+mvn test -Pdev
+```
+
+Launch using **Firefox**
+```
+mvn test -Pdev -Denv=firefox -DspecsDir=specs
+```
+
+Launch using **IE**
+```
+mvn test -Pdev -Denv=ie -DspecsDir=specs
+```
+
+_I have only tested the scripts on Chrome and Firefox browser_
+
+
+Execute specs In **parallel**
 
 ```
 mvn test -Pdev -DspecsDir=specs -DinParallel=true -Dnodes=4
 ```
 
-Execute specs by [tags](http://getgauge.io/documentation/user/current/advanced_readings/execution_types/tagged_execution.html)
+Execute specifications by [tags](http://getgauge.io/documentation/user/current/advanced_readings/execution_types/tagged_execution.html)
 
 ```
 mvn test -Pdev -DspecsDir=specs -Dtags="logIn"
 ```
 
-==> Makes sure to provide profile while executing the specs
+> Makes sure to provide profile while executing the specs
 
 
 ### Framework details:
@@ -80,46 +98,47 @@ mvn test -Pdev -DspecsDir=specs -Dtags="logIn"
 Specs
 ```
 
-* Specs (Specifications): In Gauge, we write our test cases as .spec files
+* **Specs** (Specifications): In Gauge, we write our test cases as .spec files
 
-To script the requied test scenarios I have created 7 test cases(spec):
+To script the required test scenarios I have created 7 test cases(spec):
 
-UserCheckout.spec
-UserLogIn.spec
-UserSignIn.spec
-ValidateAllCountries.spec
-ValidateEachCountry.spec
-ValidateInexistentCountry.spec
-ValidateNewCountry.spec
+ 1. UserCheckout.spec
+ 2. UserLogIn.spec
+ 3. UserSignIn.spec
+ 4. ValidateAllCountries.spec
+ 5. ValidateEachCountry.spec
+ 6. ValidateInexistentCountry.spec
+ 7. ValidateNewCountry.spec
 
-* ValidateNewCountry.spec test case will always fail as we have not yet implemented POST functionality for adding new country.
+> ValidateNewCountry.spec test case will always fail as we have not yet implemented POST functionality for adding new country.
 
-==> To write the specs I am following Imperative style instead of Declarative style. As per my experience, Imperative style makes framework more re-usable to test other applications and manual testers can easly pick the scripting.
+:exclamation: To write the specs I am following **Imperative style** instead of **Declarative style**. As per my experience, Imperative style makes framework more re-usable to test other applications and functional testers can easily pick the scripting.
 
 ```
 Repository
 ```
 
-* Repository: Instead of using typical POM for desiging framework. I am maintaining objects, divided by pages in repository.xml
-* Using unmarshalling to load xml to objects and use them at run time.
+* Instead of using typical POM for designing framework. I am maintaining objects, divided by pages in **repository.xml**
+* Using unmarshalling to load xml to objects and extracting locators at run time
 
 ```
 Driver
 ```
-* Driver folder contains DriverFactory. It allows use to test application with different browsers like Chrome, Firefox and IE. However, I have tested my scripts only with Chrome and Firefox.
-* User can set the browser type from the .pom profiles using property app.browser
+* Driver folder contains DriverFactory. It allows use to test application with different browsers like _Chrome, Firefox and IE_. However, I have tested my scripts only with Chrome and Firefox.
+* User can pass browser using -Denv={browser_name} property.
+* Environment details like app urls are set using profiles in pom.xml
 
 ```
 ActionSteps and Action
 ```
-* The sentences we wrote in the specs are linked with Java functions available in src/test/java folder
-* I am only using these ActionStep functions for calling Action functions and performing asserstions
-* All the script execution logic are writting in Action functions
+* The sentences we wrote in the specs are linked with Java functions available in `src/test/java` folder
+* Using ActionStep functions only to call Action functions and performing assertions
+* All the script execution logic are written in Action functions
 
 ```
 TestData
 ```
-* I have sperated my test data from the scripts to make them more re-usable
+* I have separated my test data from the scripts to make them more re-usable
 * TestData is available under src/test/resources
 
 
@@ -127,7 +146,7 @@ TestData
 Reports
 ```
 * Html reports are available in report folder
-* All failed test steps will contain snapshot of the failure.
+* All failed test steps will contain snapshot of the failure
 
 
  <img src="https://github.com/ankitbots/Gauge_HybridFramework/raw/master/Gauge_Report.jpg" alt="Test Report" style="width: 600px;"/>
@@ -135,9 +154,13 @@ Reports
 ```
 Logs
 ```
-* I am generating logs under hf_logs folder.
+Generating custom logs under hf_logs/ folders with below 3 logs
+
+* testhfInfo.log: Contains Info logs
+* testhfRegression.log: Contains Debug logs
+* testhfError.log: Contains Error, Warn and Fatal
 
 
 ## Author
 
-* **Ankit Nigam**
+**Ankit Nigam**
